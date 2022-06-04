@@ -5,8 +5,6 @@ const keys = document.querySelectorAll('.piano-key');
 const piano = document.getElementById('piano');
 let click = false;
 
-// Buttons Switch
-
 letterButton.addEventListener('click' , () => {
   letterButton.classList.add('btn-active');
   noteButton.classList.remove('btn-active');
@@ -21,8 +19,6 @@ noteButton.addEventListener('click' , () => {
     elem.classList.remove('piano-key-letter'));
 })
 
-// Full Screen
-
 function openFullScreen(){
   document.documentElement.requestFullscreen();
 }
@@ -33,8 +29,6 @@ function closeFullScreen(){
 
 fullScreen.addEventListener('click', openFullScreen);
 fullScreen.addEventListener('click', closeFullScreen);
-
-// Mouse
 
 keys.forEach(elem => {
   elem.addEventListener('mousedown', () => playSound(elem));
@@ -73,8 +67,6 @@ function endClick(elem) {
   elem.classList.remove('piano-key-active-pseudo');
   elem.classList.add('piano-key-remove-mouse');
 }
-
-// Keyboard
 
 keys.forEach(elem => {
   window.addEventListener('keydown', e => {
