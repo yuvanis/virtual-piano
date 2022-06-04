@@ -5,14 +5,14 @@ const keys = document.querySelectorAll('.piano-key');
 const piano = document.getElementById('piano');
 let click = false;
 
-letterButton.addEventListener('click' , () => {
+letterButton.addEventListener('click', () => {
   letterButton.classList.add('btn-active');
   noteButton.classList.remove('btn-active');
   keys.forEach(elem =>
     elem.classList.add('piano-key-letter'));
 })
 
-noteButton.addEventListener('click' , () => {
+noteButton.addEventListener('click', () => {
   letterButton.classList.remove('btn-active');
   noteButton.classList.add('btn-active');
   keys.forEach(elem =>
@@ -68,22 +68,26 @@ function endClick(elem) {
 }
 
 keys.forEach(elem => {
-  window.addEventListener('keydown', e => {
+  document.addEventListener('keydown', e => {    
     const audio = document.querySelector(`audio[data-key="${e.code}"]`);
     const light = document.querySelector(`div[data-key="${e.code}"]`);
     if (!audio) return;
     if (e.repeat) return;
     audio.play();
     audio.currentTime = 0;
-    light.classList.add('piano-key-active');
-    light.classList.add('piano-key-active-pseudo');
-}) 
- })
+    if (light) {
+      light.classList.add('piano-key-active');
+      light.classList.add('piano-key-active-pseudo');
+    }
+  }) 
+})
 
  keys.forEach(elem => {
   document.addEventListener('keyup', e => {
     const light = document.querySelector(`div[data-key="${e.code}"]`);
-    light.classList.remove('piano-key-active');
-    light.classList.remove('piano-key-active-pseudo');
+    if (light) {
+      light.classList.remove('piano-key-active');
+      light.classList.remove('piano-key-active-pseudo');
+    }
   })
 })
