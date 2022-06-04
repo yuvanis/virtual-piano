@@ -19,16 +19,15 @@ noteButton.addEventListener('click' , () => {
     elem.classList.remove('piano-key-letter'));
 })
 
-function openFullScreen(){
-  document.documentElement.requestFullscreen();
+function switchFullScreen(){
+  if (document.fullscreenElement) {
+    document.exitFullscreen()
+  } else {
+    document.documentElement.requestFullscreen();
+  }
 }
 
-function closeFullScreen(){
-  document.exitFullscreen();
-}
-
-fullScreen.addEventListener('click', openFullScreen);
-fullScreen.addEventListener('click', closeFullScreen);
+fullScreen.addEventListener('click', switchFullScreen);
 
 keys.forEach(elem => {
   elem.addEventListener('mousedown', () => playSound(elem));
